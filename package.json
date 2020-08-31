@@ -1,0 +1,22 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "weather app website ",
+  "main": "src/index.html",
+  "scripts": {
+    "serve": "browser-sync start --server \"src\" --files \"src\"",
+    "predeploy": "babel-node ./build/deploy.js",
+    "deploy": "firebase deploy"
+  },
+  "author": "ahmed wahba",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "babel-cli": "^6.26.0",
+    "babel-node": "0.0.1-security",
+    "browser-sync": "^2.26.12",
+    "ncp": "^2.0.0"
+  }
+}
