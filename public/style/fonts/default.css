@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'MerriweatherSans-Regular';
+    font-style: normal;
+    font-display: block;
+    src: url("merriweather-sans/MerriweatherSans-Regular.otf") format("opentype");
+}
+  
+@font-face {
+    font-family: 'MerriweatherSans-Bold';
+    font-style: normal;
+    font-display: block;
+    src: url("merriweather-sans/MerriweatherSans-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'PlatNomor';
+    font-style: normal;
+    font-display: block;
+    src: url("plat-nomor-font/PlatNomor-eZ2dm.otf") format("opentype");
+}

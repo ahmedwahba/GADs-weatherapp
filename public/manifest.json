@@ -20,5 +20,12 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "serviceworker": {
+        "src": "serviceWorker.js",
+        "scope": "/"
+    },
+    "permissions": [
+        "api.openweathermap.org"
+      ]
 }
