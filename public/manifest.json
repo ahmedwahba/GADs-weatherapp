@@ -26,6 +26,6 @@
         "scope": "/"
     },
     "permissions": [
-        "api.openweathermap.org"
+        "http://api.openweathermap.org/"
       ]
 }

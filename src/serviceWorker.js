@@ -9,12 +9,10 @@ const urlsToCache = [
     '/images/noon.jpg',
     '/images/sunset.jpg',
     '/images/night.png',
-    '/styles/index.css',
-    '/styles/fonts/default.css',
-    '/styles/fonts/fontawsome/fontawsome.css',
-    '/styles/fonts/webfonts/fa-solid-900.woff2',
-    '/styles/fonts/merriweather-sans/MerriweatherSans-Bold.otf',
-    '/styles/fonts/merriweather-sans/MerriweatherSans-Regular.otf',
+    '/style/index.css',
+    '/style/fonts/default.css',
+    '/style/fonts/merriweather-sans/MerriweatherSans-Bold.otf',
+    '/style/fonts/merriweather-sans/MerriweatherSans-Regular.otf',
     '/scripts/main.js',
 
 ];

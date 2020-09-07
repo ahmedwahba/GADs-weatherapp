@@ -40,13 +40,11 @@ function getTempratureForCity(city) {
             appid: 'd43a204d705dee337054cb4e8b38fdeb',
             units: 'metric'
         };
-        const URL = "http://api.openweathermap.org/data/2.5/weather?q=";
+        const URL = "https://api.openweathermap.org/data/2.5/weather?q=";
     
         xhr.open("GET", URL + params.q + "&appid=" + params.appid + "&units=" + params.units, true);
     
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Access-Control-Allow-Credentials", true);
-        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Accept", "*/*");
         xhr.send(data);
     })
 }
