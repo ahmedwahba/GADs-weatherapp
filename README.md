@@ -4,9 +4,9 @@
  
  user can see weather of **New York city** as default or home city, also can see his **current city** (*out side NYC*) as one of menu options  
  
- user can get more details about his current location from **My location ** tab such as the whole week temperatures 
+ user can get more details about his current location from **My location** tab such as the whole week temperatures 
  
- user search for any city temprature ffrom search bar and see old search results on **Recent cities ** tab 
+ user search for any city temprature ffrom search bar and see old search results on **Recent cities** tab 
  
  
  ## live URL:
