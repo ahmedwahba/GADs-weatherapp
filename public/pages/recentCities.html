@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="Weather App">
+    <meta name="description" content="get weather of NYC or your current city">
+    <meta name="application-name" content="Weather App">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Weather App - recent cities</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="mask-icon" href="../icon/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" 
+          as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="../style/fonts/default.css">
+    <link rel="stylesheet" href="../style/index.css">
+
+</head>
+<body>
+    <div class="parent-container">
+        <nav class="nav-bar">
+            <div class="side-menu" id="side-menu-icon">
+                <i class="fa fa-bars fa-2x menu-icon"></i>
+            </div>
+            <div class="menu-items" id="menu-items">
+                <div class="item" id="default-city" onclick="onCityPress()">New York</div>
+                <div class="item" id="my-city">my city</div>
+                <div class="item" id="my-location" onclick="onMyLocationPress()">My location</div>
+                <div class="item" id="recent-cities" onclick="onRecentCitiesPress()">Recent cities</div>
+            </div>
+        </nav>
+        <main>
+            <div class="recent-cities-wrapper">
+                <div class="recent-city"> Cairo </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../index.js" type="text/javascript"></script>
+    <script src="../scripts/tempServices.js" type="text/javascript"></script>
+    <script src="../scripts/weather.js" type="text/javascript"></script>
+    <script src="../scripts/main.js" type="text/javascript"></script>
+</body> 
+</html>

@@ -1,3 +1,4 @@
+const APP_ID = 'd43a204d705dee337054cb4e8b38fdeb';
 
 function getClientCity() {
     return new Promise((resolve, reject) => {
@@ -37,12 +38,38 @@ function getTempratureForCity(city) {
     
         let params = {
             q: city ? city : 'New York',
-            appid: 'd43a204d705dee337054cb4e8b38fdeb',
             units: 'metric'
         };
         const URL = "https://api.openweathermap.org/data/2.5/weather?q=";
     
-        xhr.open("GET", URL + params.q + "&appid=" + params.appid + "&units=" + params.units, true);
+        xhr.open("GET", URL + params.q + "&appid=" + APP_ID + "&units=" + params.units, true);
+    
+        xhr.setRequestHeader("Accept", "*/*");
+        xhr.send(data);
+    })
+}
+
+function getTempratureForPosition(lat, long) {
+    return new Promise((resolve, reject) => {
+        var data = null;
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+    
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                resolve(JSON.parse(this.responseText));
+            } 
+        });
+    
+        let paramsString = "?lat="     + lat +  
+                           "&lon="     + long + 
+                           "&exclude=" + "hourly" + 
+                           "&appid="   + APP_ID + 
+                           "&units="   + "metric"; 
+        const URL = "https://api.openweathermap.org/data/2.5/onecall";
+    
+        xhr.open("GET", URL + paramsString, true);
     
         xhr.setRequestHeader("Accept", "*/*");
         xhr.send(data);

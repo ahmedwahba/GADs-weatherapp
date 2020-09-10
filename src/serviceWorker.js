@@ -14,6 +14,7 @@ const urlsToCache = [
     '/style/fonts/merriweather-sans/MerriweatherSans-Bold.otf',
     '/style/fonts/merriweather-sans/MerriweatherSans-Regular.otf',
     '/scripts/main.js',
+    '/scripts/weather.js'
 
 ];
 

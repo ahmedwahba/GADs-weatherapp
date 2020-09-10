@@ -1,6 +1,3 @@
-//import getTempratureForCity from './tempServices';
-
-//const getTempratureForCity = require('./tempServices');
 
 function adjustBodyStyle() {
     document.body.style.height = window.innerHeight + "px";
@@ -52,6 +49,15 @@ function addMenuToggleListener() {
     }
 }
 
+function setCurrentActiveTab(tabid) {
+    let allItems = document.querySelectorAll(".menu-items .item");
+    allItems.forEach((item) => {
+        item.classList.remove("active");
+    });
+    let tab = document.querySelector(tabid);
+    tab.classList.add("active");
+}
+
 function onSearchPress() {
     const searchField = document.querySelector('#city-search');
     if (searchField?.value !== "") {
@@ -59,48 +65,61 @@ function onSearchPress() {
     }
 }
 
-function bindWeatherData(data) {
-    let cityName = document.querySelector('#city-name');
-    if (data.name && cityName) {
-        cityName.innerHTML = data.name;
-    }
-    let tempValue = document.querySelector('#temp-value');
-    if (data.main?.temp && tempValue) {
-        tempValue.innerHTML = Number(data.main.temp).toFixed(0);
-    }
-    let humadityValue = document.querySelector('#humadity-value');
-    if (data.main?.humidity && humadityValue) {
-        humadityValue.innerHTML = data.main.humidity;
-    }
-    let windValue = document.querySelector('#wind-value');
-    if (data.wind?.speed && windValue) {
-        windValue.innerHTML = data.wind.speed;
-    }
-}
-
 function loadDefaultCity() {
     getTempratureForCity().then((result) => {
         console.log('else res--->', result);
-        bindWeatherData(result);
+        setCurrentActiveTab("#default-city");
+        let mainWeather = {
+            name: result.name,
+            temp: result.main.temp,
+            humidity: result.main.humidity,
+            windSpeed: result.wind.speed,
+            weatherIcon: result.weather[0].icon
+        }
+        bindWeatherData(mainWeather);
     });
 }
 
-function loadcityWeather() {
+function loadWeather() {
     const currentURL = new URL(window.location.href);
     const city = currentURL.searchParams.get("city");
+    const myLocation = currentURL.searchParams.get("mylocation");
     if (city) {
         getTempratureForCity(city).then((result) => {
             console.log('if res--->', result);
             if (result.cod == 200) {
-                bindWeatherData(result); 
+                let mainWeather = {
+                    name: result.name,
+                    temp: result.main.temp,
+                    humidity: result.main.humidity,
+                    windSpeed: result.wind.speed,
+                    weatherIcon: result.weather[0].icon
+                }
+                bindWeatherData(mainWeather); 
+                saveCityOnSearch(city);
             } else {
                 loadDefaultCity();
                 document.location.href = document.location.origin;
                 alert("Error while getting weather of your city, Try again with correct name");
             }
         });
+    } else if (myLocation) {
+        setCurrentActiveTab("#my-location");
+        getMyLocationWeather()
     } else {
-       loadDefaultCity();
+        loadDefaultCity();
+    }
+}
+
+function saveCityOnSearch(city) {
+    let cities = JSON.parse(localStorage.getItem("cities"));
+    if (cities && cities.length > 0) {
+        cities.push(city);
+        localStorage.setItem("cities", JSON.stringify(Array.from(new Set(cities))));
+    } else {
+        cities = [];
+        cities.push(city);
+        localStorage.setItem("cities", JSON.stringify(Array.from(new Set(cities))));
     }
 }
 
@@ -112,7 +131,7 @@ function onCityPress(cityName) {
     document.location.href = URL;
 }
 
-function getCurrentCity() {
+function setCurrentCityName() {
     const currentCity = document.querySelector('#my-city');
     const myCity = sessionStorage.getItem('currentCity');
     if (myCity) {
@@ -137,18 +156,40 @@ function getCurrentCity() {
 function addCurrentCityClickListener() {
     const currentCity = document.querySelector('#my-city');
     if (currentCity) {
+        setCurrentActiveTab("#my-city");
         currentCity.addEventListener('click',(event) => {
             onCityPress(currentCity.innerHTML);
         });
     }
 }
 
+
+function onMyLocationPress() {
+    setCurrentActiveTab("#my-location");
+    let URL = document.location.origin + "?mylocation=true";
+    document.location.href = URL;
+}
+
+function onRecentCitiesPress() {
+    setCurrentActiveTab("#recent-cities");
+    let URL = document.location.origin + "/pages/recentCities.html";
+    document.location.href = URL;
+}
+
+function loadRecentCities() {
+    setCurrentActiveTab("#recent-cities");
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
     adjustBodyStyle();
     adjustBackground();
     addMenuToggleListener();
-    getCurrentCity();
+    setCurrentCityName();
     addCurrentCityClickListener();
-    loadcityWeather();
+    if (window.location.pathname !== '/pages/recentCities.html') {
+        loadWeather();
+    } else {
+        loadRecentCities();
+    }
 })
 

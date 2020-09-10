@@ -20,7 +20,7 @@ body {
     bottom: 0px;
     right: 0px;
     left: 0px;
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
 }
 
@@ -79,10 +79,8 @@ body {
     margin-right: 5%;
 }
 .menu-items .item:hover {
-    color: #000;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    text-transform: uppercase;
+    color: #E96E4A;
+    font-weight: bolder;
 }
 
 .search-bar {
@@ -162,13 +160,17 @@ body {
 }
 
 .side-menu-list .item:hover {
-    color: #000;
-    background-color: rgba(255, 255, 255, 0.3);
-    text-transform: uppercase;
+    color: #E96E4A;
+    font-weight: bolder;
 }
 
 .item#my-city {
     display: none;
+}
+
+.item.active {
+    color: #E96E4A;
+    font-weight: bolder;
 }
 
 main {
@@ -184,9 +186,10 @@ main::-webkit-scrollbar {
     display: none;
 }
 
-.weather-card {
+.weather-card, .recent-cities-wrapper {
     clear: both;
-    margin-left: 5%;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 5%;
     flex-direction: row;
     flex-wrap: wrap;
@@ -231,7 +234,7 @@ main::-webkit-scrollbar {
 
 .city-name {
     font-family: 'MerriweatherSans-Bold';
-    color: #fff;
+    color: #E96E4A;
     top: 105px;
     left: 90px;
     position: absolute;
@@ -277,16 +280,19 @@ main::-webkit-scrollbar {
     top: -25px;
 }
 
-.temp-icon i {
-    color: #fff;
-    font-size: 110px;
+.temp-icon {
+    width: 170px;
+    height: 170px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 .others-card {
     color: #fff;
     padding: 5px;
     padding-top: 10%;
-    min-height: 200px;
+    min-height: 120px;
     text-align: center;
 }
 @media only screen 
@@ -327,3 +333,69 @@ main::-webkit-scrollbar {
     display: inline-block;
     padding-left: 10%;
 }
+
+.week-card-wrapper {
+    min-height: 200px;
+    width: 90%;
+    max-width: 800px;
+    display: block;
+    margin: auto;
+}
+@media only screen 
+  and (min-device-width: 690px)  {
+    .week-card-wrapper {
+        min-height: 400px;
+    }
+}
+
+.week-card {
+    text-align: center;
+    color: #ffff; 
+    border-width: 0px;
+    border-style: solid;
+    border-radius: 20px;
+
+}
+
+.week-card .week-day {
+    display: inline-block;
+    border-right: 1px solid;
+    width: 12%;
+}
+
+.week-card .week-day:last-child {
+    border-right: 0px;
+}
+
+.week-day .day-name {
+    text-transform: uppercase;
+    font-size: smaller;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid;
+}
+.week-day .temp {
+    font-family: 'PlatNomor';
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+}
+.week-day .icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+.recent-city {
+    color: #fff;
+    text-align: center;
+    background: rgba(0,0,0, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    min-width: 300px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+} 
