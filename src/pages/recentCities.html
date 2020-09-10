@@ -36,10 +36,15 @@
                 <div class="item" id="my-location" onclick="onMyLocationPress()">My location</div>
                 <div class="item" id="recent-cities" onclick="onRecentCitiesPress()">Recent cities</div>
             </div>
+            <div class="search-bar">
+                <label for="city-search"></label>
+                <input type="search" name="city-search" id="city-search" placeholder="Enter your city here">
+                <i class="fa fa-search fa-1x search-icon" id="search-button" onclick="onSearchPress()"></i>
+            </div>
         </nav>
         <main>
-            <div class="recent-cities-wrapper">
-                <div class="recent-city"> Cairo </div>
+            <div class="recent-cities-wrapper" id="cities-wrapper">
+                <div class="recent-city"> You have not searched for your city weather yet, Go find it </div>
             </div>
         </main>
     </div>
