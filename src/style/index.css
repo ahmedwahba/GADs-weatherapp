@@ -274,7 +274,7 @@ main::-webkit-scrollbar {
 }
 
 .degree-unit {
-    display: inline-block;
+    display: none;
     font-size: 40px;
     position: absolute;
     top: -25px;
@@ -388,14 +388,68 @@ main::-webkit-scrollbar {
     margin: auto;
 }
 
+@media only screen 
+  and (min-device-width: 600px)  {
+    .recent-cities-wrapper {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+
 .recent-city {
     color: #fff;
     text-align: center;
-    background: rgba(0,0,0, 0.4);
+    background: rgba(255,255,255, 0.4);
     padding: 10px;
     border-radius: 10px;
     display: inline-block;
     min-width: 300px;
     padding-top: 20px;
     padding-bottom: 20px;
+    position: relative;
+    margin: 5px;
 } 
+
+.recent-city .name {
+    font-size: large;
+    text-transform: capitalize;
+}
+
+.recent-city .delete-city {
+    color: #fff;
+    background-color: #ff0000;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    top: 0;
+    bottom: 0;
+    line-height: 2;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    opacity: 0.5;
+    width: 30px;
+    font-size: larger;
+    display: none;
+}
+
+.recent-city .open-city {
+    color: #fff;
+    background-color: #ffa500;
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    top: 0;
+    bottom: 0;
+    line-height: 2;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    opacity: 0.5;
+    width: 30px;
+    font-size: larger;
+    display: none;
+}
+
+.active .delete-city, .active .open-city  {
+    display: inline-block;
+}

@@ -9,15 +9,17 @@ function bindWeatherData(weatherObj) {
         cityName.innerHTML = weatherObj.name;
     }
     let tempValue = document.querySelector('#temp-value');
+    let tempUnit = document.querySelector(".temp-degree .degree-unit");
     if (weatherObj.temp && tempValue) {
         tempValue.innerHTML = Number(weatherObj.temp).toFixed(0);
+        tempUnit.style.display = "inline-block";
     }
     let humadityValue = document.querySelector('#humadity-value');
     if (weatherObj.humidity && humadityValue) {
         humadityValue.innerHTML = weatherObj.humidity;
     }
     let windValue = document.querySelector('#wind-value');
-    if (weatherObj.wind?.speed && windValue) {
+    if (weatherObj.windSpeed && windValue) {
         windValue.innerHTML = weatherObj.windSpeed;
     }
     let tempIcon = document.querySelector('#temp-icon');
@@ -53,7 +55,6 @@ function creatDayDOM(day) {
 
 function loadWeekWeatherIcons() {
     let icons = document.querySelectorAll("#week-card .icon");
-    console.log(icons[0].attributes.code.value)
     icons.forEach((icon) => {
         icon.style.backgroundImage = "url(" + getImageURL(icon.attributes.code.value ) + ")";
     })
@@ -73,7 +74,6 @@ function bindWeekWeather(weekData) {
 }
 
 function loadMylocationWeatherData(weatherData) {
-    console.log('location weather', weatherData);
     let mainWeather = {
         name: weatherData.timezone?.split('/')[1],
         temp: weatherData.current.temp,
@@ -87,7 +87,6 @@ function loadMylocationWeatherData(weatherData) {
 
 function getMyLocationWeather() {
     const postionCallback = (position) => {
-        console.log("Current pos: ", position);
         getTempratureForPosition(position.coords.latitude, position.coords.longitude)
             .then((result) => {
                loadMylocationWeatherData(result)

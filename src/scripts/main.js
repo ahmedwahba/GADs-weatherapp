@@ -67,7 +67,6 @@ function onSearchPress() {
 
 function loadDefaultCity() {
     getTempratureForCity().then((result) => {
-        console.log('else res--->', result);
         setCurrentActiveTab("#default-city");
         let mainWeather = {
             name: result.name,
@@ -86,7 +85,6 @@ function loadWeather() {
     const myLocation = currentURL.searchParams.get("mylocation");
     if (city) {
         getTempratureForCity(city).then((result) => {
-            console.log('if res--->', result);
             if (result.cod == 200) {
                 let mainWeather = {
                     name: result.name,
@@ -141,7 +139,6 @@ function setCurrentCityName() {
         }
     } else {
         getClientCity().then((result) => {
-            console.log('current   --', result);
             if (currentCity && result.location?.city) {
                 sessionStorage.setItem('currentCity', result.location.city);
                 if (result.location.city !== "New York") {
@@ -176,8 +173,54 @@ function onRecentCitiesPress() {
     document.location.href = URL;
 }
 
+function deleteRecentCity(element, city) {
+    let savedCities = JSON.parse(localStorage.getItem("cities"));
+    if (savedCities && savedCities.length > 0) {
+        savedCities.splice(savedCities.indexOf(city),1);
+        localStorage.setItem("cities", JSON.stringify(savedCities));
+        element.parentNode.remove();
+        window.location.reload();
+    }
+}
+
+function toggleDeleteCity(event) {
+    let element = event.srcElement;
+    if (element.classList.contains("recent-city")) {
+       element.classList.toggle("active");
+    } else {
+        element.parentNode.classList.toggle("active");
+    }
+}
+
+function openCity(city) {
+    onCityPress(city);
+}
+
+function bindRecentCities(cities) {
+    let citiesWrapper = document.querySelector("#cities-wrapper");
+    if (citiesWrapper) {
+        citiesWrapper.innerHTML = "";
+        cities.forEach((city) => {
+           let cityElement = `<div class="recent-city"  onclick="toggleDeleteCity(event)" > 
+                                <span class="open-city" onclick="openCity('${city}')">
+                                    <i class="fa fa-search fa-1x"></i>
+                                </span>
+                                <span class="name">${city}</span>
+                                <span class="delete-city" onclick="deleteRecentCity(this,'${city}')">
+                                    <i class="fa fa-trash-alt fa-1x"></i>
+                                </span>
+                            </div>`;
+            citiesWrapper.appendChild(htmlToElement(cityElement))
+        });
+    }
+}
+
 function loadRecentCities() {
     setCurrentActiveTab("#recent-cities");
+    const savedCities = JSON.parse(localStorage.getItem("cities"));
+    if (savedCities && savedCities.length > 0) {
+        bindRecentCities(savedCities);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
