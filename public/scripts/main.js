@@ -133,7 +133,7 @@ function setCurrentCityName() {
     const currentCity = document.querySelector('#my-city');
     const myCity = sessionStorage.getItem('currentCity');
     if (myCity) {
-        if (myCity !== "New York") {
+        if (myCity !== "New York City") {
             currentCity.innerHTML = myCity;
             currentCity.style.display = "inline-block";
         }
@@ -141,7 +141,7 @@ function setCurrentCityName() {
         getClientCity().then((result) => {
             if (currentCity && result.location?.city) {
                 sessionStorage.setItem('currentCity', result.location.city);
-                if (result.location.city !== "New York") {
+                if (result.location.city !== "New York City") {
                     currentCity.innerHTML = result.location.city;
                     currentCity.style.display = "inline-block";
                 }

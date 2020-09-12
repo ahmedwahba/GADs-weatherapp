@@ -31,15 +31,15 @@
                 <i class="fa fa-bars fa-2x menu-icon"></i>
             </div>
             <div class="menu-items" id="menu-items">
-                <div class="item" id="default-city" onclick="onCityPress()">New York</div>
+                <div class="item" id="default-city" onclick="onCityPress()">Main Town</div>
                 <div class="item" id="my-city">my city</div>
                 <div class="item" id="my-location" onclick="onMyLocationPress()">My location</div>
                 <div class="item" id="recent-cities" onclick="onRecentCitiesPress()">Recent cities</div>
             </div>
             <div class="search-bar">
                 <label for="city-search"></label>
-                <input type="search" name="city-search" id="city-search" placeholder="Enter your city here">
-                <i class="fa fa-search fa-1x search-icon" id="search-button" onclick="onSearchPress()"></i>
+                <input type="search" name="city-search" id="city-search" aria-labelledby="city-search" placeholder="Enter your city here">
+                <i class="fa fa-search fa-1x search-icon" id="search-button" aria-label="search" onclick="onSearchPress()"></i>
             </div>
         </nav>
         <main>

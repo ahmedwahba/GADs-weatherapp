@@ -25,27 +25,31 @@ function getClientCity() {
 
 function getTempratureForCity(city) {
     return new Promise((resolve, reject) => {
-        var data = null;
+        try {
+            var data = null;
 
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-    
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                resolve(JSON.parse(this.responseText));
-            } 
-        });
-    
-        let params = {
-            q: city ? city : 'New York',
-            units: 'metric'
-        };
-        const URL = "https://api.openweathermap.org/data/2.5/weather?q=";
-    
-        xhr.open("GET", URL + params.q + "&appid=" + APP_ID + "&units=" + params.units, true);
-    
-        xhr.setRequestHeader("Accept", "*/*");
-        xhr.send(data);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+        
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    resolve(JSON.parse(this.responseText));
+                } 
+            });
+        
+            let params = {
+                q: city ? city : 'New York',
+                units: 'metric'
+            };
+            const URL = "https://api.openweathermap.org/data/2.5/weather?q=";
+        
+            xhr.open("GET", URL + params.q + "&appid=" + APP_ID + "&units=" + params.units, true);
+        
+            xhr.setRequestHeader("Accept", "*/*");
+            xhr.send(data);
+        } catch (error) {
+            reject(error);
+        }
     })
 }
 
