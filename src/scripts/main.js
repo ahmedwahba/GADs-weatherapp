@@ -100,6 +100,10 @@ function loadWeather() {
                 document.location.href = document.location.origin;
                 alert("Error while getting weather of your city, Try again with correct name");
             }
+        })
+        .catch((error) => {
+            document.location.href = document.location.origin;
+            alert("Error while getting weather of your city, Try again with correct name");
         });
     } else if (myLocation) {
         setCurrentActiveTab("#my-location");

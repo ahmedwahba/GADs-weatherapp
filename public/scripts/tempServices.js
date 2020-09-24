@@ -33,6 +33,9 @@ function getTempratureForCity(city) {
         
             xhr.addEventListener("readystatechange", function () {
                 if (this.readyState === 4) {
+                    if (this.responseURL.indexOf("&units") === -1) {
+                        reject(false); 
+                    }
                     resolve(JSON.parse(this.responseText));
                 } 
             });
